@@ -108,6 +108,20 @@ The meta-point: the difference between an analogy and a theory is that a theory 
 
 ---
 
+## A Practitioner's Rosetta Stone: Three Bugs You Already Know
+
+If the sheaf framing still feels abstract, here's a translation table. PACEvolve — our composition-aware evolutionary framework — identified three failure modes in multi-agent systems. You've hit all three. You just didn't have names for what was breaking structurally.
+
+**Context pollution** is low spectral gap. Your agents are passing information around, but nothing converges. Context sloshes between nodes like water in a bathtub — every agent sees everything, nothing gets filtered, and the signal drowns in noise. Mathematically, the spectral gap of the sheaf Laplacian is near zero: the system mixes too slowly to reach consensus. *The fix:* tighten your restriction maps. Not every agent needs every context. Scope aggressively.
+
+**Mode collapse** is inconsistent local sections. Your agents were supposed to explore diverse solutions, but they all converged to the same answer. Information dies at the boundaries between agents — the local sections can't disagree because nothing flows across the overlap regions to sustain diversity. The gluing axiom succeeds trivially because there's only one section left to glue. *The fix:* check your boundary flow. If agents share too much context too early, they'll collapse. Preserve local autonomy before demanding global coherence.
+
+**Weak collaboration** is high H-one. Your agents explore different solutions beautifully — but they can't integrate them. Each agent has a valid local section, the sections disagree on overlaps, and no global section exists that reconciles them. This is a genuine cohomological obstruction: the first cohomology group is non-trivial. *The fix:* add communication channels (edges in your agent graph) until the topology supports a global section. This is literally what reducing H-one means — you're killing cocycles by adding paths.
+
+Three bugs. Three sheaf invariants. One diagnostic framework. If you've been debugging agent coordination by staring at prompts, you've been looking at the wrong layer.
+
+---
+
 ## The Mathematics Was Already There
 
 Return to where we started: 847 deployments, 76% failure rate. Those failures aren't random. They cluster around three structural violations: inconsistent context (failed gluing axiom), cache misses in the wrong tier (failed restriction maps), and topological fragility (hub architectures with beta-1 = 0). The mathematics doesn't just explain the failures — it categorizes them.
